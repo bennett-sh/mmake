@@ -20,8 +20,13 @@ func Clean(ctx *cli.Context) error {
 		return err
 	}
 
+	cwd, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+
 	// if build dir is project dir
-	if path.Clean(mmakefile.OutputDirectory) == "." {
+	if path.Clean(mmakefile.OutputDirectory) == "." || path.Clean(mmakefile.OutputDirectory) == path.Clean(cwd) {
 		err = os.Remove(utils.GetOutputFile(*mmakefile))
 	} else {
 		err = os.RemoveAll(mmakefile.OutputDirectory)
