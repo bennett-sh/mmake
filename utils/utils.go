@@ -11,10 +11,7 @@ func GetOutputFile(mmakefile mmakefile.MMakeFile) string {
 		mmakefile.OutputDirectory,
 		fmt.Sprintf(
 			mmakefile.OutputFormat,
-			path.Join(
-				mmakefile.OutputDirectory,
-				mmakefile.Name,
-			),
+			mmakefile.Name,
 		),
 	)
 }
