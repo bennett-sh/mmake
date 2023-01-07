@@ -1,0 +1,5 @@
+{
+  "yaml.schemas": {
+    "file:///${workspaceFolder}/MMakefile.schema.json": "/MMakefile/i"
+  }
+}

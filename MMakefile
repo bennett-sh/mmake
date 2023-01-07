@@ -1,0 +1,11 @@
+# Commented = optional
+name: test
+cc: g++
+# ccFlags:
+# outputFormat: %s.exe  # %s = name; keep commented to auto detect
+# sourceOptions:
+#  files: "*.cpp *.c *.c++"
+#  directories: source/ src/ sources/ source/** src/** sources/** # can be a glob pattern; keep in mind that if you want to include a directory and it's subdirectories, you'll need to write both dir/ and dir/**
+# include: # default: include and headers
+#   - include
+#   - headers
