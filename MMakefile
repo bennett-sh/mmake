@@ -1,10 +1,11 @@
-# Commented = optional
-name: test
+# The MMakefile is a YAML file. It is recommended to configure your IDE's file associations to associate MMakefiles with YAML
+# Commented options mean they're optional
+name: example
 cc: g++
-# ccFlags:
+# ccFlags: # Extra flags passed to the compiler
 # outputFormat: %s.exe  # %s = name; keep commented to auto detect
 # sourceOptions:
-#  files: "*.cpp *.c *.c++"
+#  files: "*.cpp *.cc *.c *.c++"
 #  directories: source/ src/ sources/ source/** src/** sources/** # can be a glob pattern; keep in mind that if you want to include a directory and it's subdirectories, you'll need to write both dir/ and dir/**
 # include: # default: include and headers
 #   - include

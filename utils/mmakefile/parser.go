@@ -53,7 +53,7 @@ func ParseFile(file string) (*MMakeFile, error) {
 	}
 
 	if len(mmakefile.SourceOptions.Files) < 1 {
-		mmakefile.SourceOptions.Files = "*.cpp *.c *.c++"
+		mmakefile.SourceOptions.Files = "*.cpp *.cc *.c *.c++"
 	}
 
 	if len(mmakefile.Include) < 1 {
