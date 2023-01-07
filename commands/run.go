@@ -3,11 +3,11 @@ package commands
 import (
 	"fmt"
 	"mmake/utils"
-	"mmake/utils/commandutils"
 	"os"
 	"os/exec"
 	"path"
 
+	"github.com/google/shlex"
 	"github.com/urfave/cli/v2"
 )
 
@@ -30,7 +30,12 @@ func Run(ctx *cli.Context) error {
 		),
 	)
 
-	cmd.Args = commandutils.SplitArguments(ctx.String("arguments"))
+	runArgsSplit, err := shlex.Split(ctx.String("arguments"))
+	if err != nil {
+		return err
+	}
+
+	cmd.Args = runArgsSplit
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	cmd.Stdin = os.Stdin
@@ -39,8 +44,6 @@ func Run(ctx *cli.Context) error {
 	if err != nil {
 		return err
 	}
-
-	// FIXME: passing args doesn't work
 
 	return nil
 }
