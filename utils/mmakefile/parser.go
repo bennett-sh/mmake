@@ -9,12 +9,13 @@ import (
 )
 
 type MMakeFile struct {
-	Name          string        `yaml:"name"`
-	CC            string        `yaml:"cc" default:"g++"`
-	CCFlags       string        `yaml:"ccFlags" default:""`
-	OutputFormat  string        `yaml:"outputFormat" default:""`
-	SourceOptions SourceOptions `yaml:"sourceOptions"`
-	Include       []string      `yaml:"include"`
+	Name            string        `yaml:"name"`
+	CC              string        `yaml:"cc"`
+	CCFlags         string        `yaml:"ccFlags"`
+	OutputFormat    string        `yaml:"outputFormat"`
+	OutputDirectory string        `yaml:"outputDirectory"`
+	SourceOptions   SourceOptions `yaml:"sourceOptions"`
+	Include         []string      `yaml:"include"`
 }
 
 type SourceOptions struct {
@@ -58,6 +59,14 @@ func ParseFile(file string) (*MMakeFile, error) {
 
 	if len(mmakefile.Include) < 1 {
 		mmakefile.Include = []string{"include", "headers"}
+	}
+
+	if len(mmakefile.OutputDirectory) < 1 {
+		mmakefile.OutputDirectory = "bin"
+	}
+
+	if len(mmakefile.CC) < 1 {
+		mmakefile.CC = "g++"
 	}
 
 	return mmakefile, nil

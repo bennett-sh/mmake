@@ -29,6 +29,13 @@ func main() {
 				},
 			},
 			{
+				Name:    "clean",
+				Aliases: []string{"clean", "fix", "tidy"},
+				Action: func(ctx *cli.Context) error {
+					return commands.Clean(ctx)
+				},
+			},
+			{
 				Name:    "run",
 				Aliases: []string{"r"},
 				Action: func(ctx *cli.Context) error {

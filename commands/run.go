@@ -2,6 +2,7 @@ package commands
 
 import (
 	"fmt"
+	"mmake/utils"
 	"mmake/utils/commandutils"
 	"os"
 	"os/exec"
@@ -16,15 +17,18 @@ func Run(ctx *cli.Context) error {
 		return err
 	}
 
-	fmt.Printf("running %s...\n", mmakefile.Name)
+	fmt.Printf("Running %s...\n", mmakefile.Name)
 
 	cwd, err := os.Getwd()
 	if err != nil {
 		return err
 	}
-	cmd := exec.Command(path.Join(cwd, fmt.Sprintf(mmakefile.OutputFormat, mmakefile.Name)))
-
-	fmt.Println((ctx.String("arguments")))
+	cmd := exec.Command(
+		path.Join(
+			cwd,
+			utils.GetOutputFile(*mmakefile),
+		),
+	)
 
 	cmd.Args = commandutils.SplitArguments(ctx.String("arguments"))
 	cmd.Stdout = os.Stdout

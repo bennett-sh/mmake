@@ -2,10 +2,13 @@ package commands
 
 import (
 	"fmt"
+	"io/fs"
 	"mmake/utils/commandutils"
 	"mmake/utils/compilation"
 	"mmake/utils/mmakefile"
+	"os"
 	"os/exec"
+	"path"
 
 	"github.com/urfave/cli/v2"
 )
@@ -25,6 +28,12 @@ func Compile(ctx *cli.Context) (*mmakefile.MMakeFile, error) {
 	compiler := mmakefile.CC
 	flags := mmakefile.CCFlags
 	name := mmakefile.Name
+	output := path.Join(mmakefile.OutputDirectory, name)
+
+	err = os.MkdirAll(mmakefile.OutputDirectory, fs.ModeDir)
+	if err != nil {
+		return mmakefile, err
+	}
 
 	fmt.Println("Compiling...")
 
@@ -33,7 +42,7 @@ func Compile(ctx *cli.Context) (*mmakefile.MMakeFile, error) {
 		return mmakefile, err
 	}
 
-	args := []string{"-o" + name}
+	args := []string{"-o" + output}
 
 	if len(flags) > 0 {
 		args = append(args, flags)
