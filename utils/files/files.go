@@ -1,13 +1,14 @@
-package compilation
+package files
 
 import (
+	"fmt"
 	"mmake/utils/mmakefile"
 	"path"
 	"path/filepath"
 	"strings"
 )
 
-func GetFiles(mmakefile mmakefile.MMakeFile) ([]string, error) {
+func GetSourceFiles(mmakefile mmakefile.MMakeFile) ([]string, error) {
 	sourceFiles := []string{}
 
 	for _, pattern := range strings.Split(mmakefile.SourceOptions.Directories, " ") {
@@ -22,4 +23,14 @@ func GetFiles(mmakefile mmakefile.MMakeFile) ([]string, error) {
 	}
 
 	return sourceFiles, nil
+}
+
+func GetOutputFile(mmakefile mmakefile.MMakeFile) string {
+	return path.Join(
+		mmakefile.OutputDirectory,
+		fmt.Sprintf(
+			mmakefile.OutputFormat,
+			mmakefile.Name,
+		),
+	)
 }

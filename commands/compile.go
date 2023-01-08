@@ -3,8 +3,7 @@ package commands
 import (
 	"fmt"
 	"io/fs"
-	"mmake/utils/commandutils"
-	"mmake/utils/compilation"
+	"mmake/utils/files"
 	"mmake/utils/mmakefile"
 	"os"
 	"os/exec"
@@ -37,7 +36,7 @@ func Compile(ctx *cli.Context) (*mmakefile.MMakeFile, error) {
 
 	fmt.Println("Compiling...")
 
-	files, err := compilation.GetFiles(*mmakefile)
+	files, err := files.GetSourceFiles(*mmakefile)
 	if err != nil {
 		return mmakefile, err
 	}
@@ -55,8 +54,9 @@ func Compile(ctx *cli.Context) (*mmakefile.MMakeFile, error) {
 	}
 
 	cmd := exec.Command(compiler, args...)
-	cmd.Stderr = commandutils.CommandWriter{}
-	cmd.Stdout = commandutils.CommandWriter{}
+	cmd.Stderr = os.Stderr
+	cmd.Stdout = os.Stdout
+	cmd.Stdin = os.Stdin
 	err = cmd.Run()
 	if err != nil {
 		fmt.Printf("compilation error: %s\n", err.Error())

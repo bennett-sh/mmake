@@ -2,7 +2,7 @@ package commands
 
 import (
 	"fmt"
-	"mmake/utils"
+	"mmake/utils/files"
 	"os"
 	"os/exec"
 	"path"
@@ -26,7 +26,7 @@ func Run(ctx *cli.Context) error {
 	cmd := exec.Command(
 		path.Join(
 			cwd,
-			utils.GetOutputFile(*mmakefile),
+			files.GetOutputFile(*mmakefile),
 		),
 	)
 

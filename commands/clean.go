@@ -1,7 +1,7 @@
 package commands
 
 import (
-	"mmake/utils"
+	"mmake/utils/files"
 	"mmake/utils/mmakefile"
 	"os"
 	"path"
@@ -27,7 +27,7 @@ func Clean(ctx *cli.Context) error {
 
 	// if build dir is project dir
 	if path.Clean(mmakefile.OutputDirectory) == "." || path.Clean(mmakefile.OutputDirectory) == path.Clean(cwd) {
-		err = os.Remove(utils.GetOutputFile(*mmakefile))
+		err = os.Remove(files.GetOutputFile(*mmakefile))
 	} else {
 		err = os.RemoveAll(mmakefile.OutputDirectory)
 	}
