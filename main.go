@@ -30,7 +30,7 @@ func main() {
 			},
 			{
 				Name:    "clean",
-				Aliases: []string{"clean", "fix", "tidy"},
+				Aliases: []string{"fix", "tidy"},
 				Action: func(ctx *cli.Context) error {
 					return commands.Clean(ctx)
 				},
