@@ -1,5 +1,8 @@
 # MMake
+[![Build](https://github.com/bennett-sh/mmake/actions/workflows/artifact.yml/badge.svg)](https://github.com/bennett-sh/mmake/actions/workflows/artifact.yml)
 ### A much simpler version of make written in Go
+
+<br/>
 
 ## Download
 You can download the latest artifact from [here](https://github.com/bennett-sh/mmake/actions). Keep in mind that these are the latest builds so they may have issues.
