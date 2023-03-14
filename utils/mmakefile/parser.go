@@ -62,7 +62,7 @@ func ParseFile(file string) (*MMakeFile, error) {
 	}
 
 	if len(mmakefile.OutputDirectory) < 1 {
-		mmakefile.OutputDirectory = "bin"
+		mmakefile.OutputDirectory = "Build"
 	}
 
 	if len(mmakefile.CC) < 1 {
