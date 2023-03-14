@@ -1,6 +1,9 @@
 # MMake
 ### A much simpler version of make written in Go
 
+## Download
+You can download the latest artifact from [here](https://github.com/bennett-sh/mmake/actions). Keep in mind that these are the latest builds so they may have issues.
+
 ## Usage
 - Compile the program
 ```mmake compile [<mmakefile>]```
